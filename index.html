@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CORVUS</title>
+</head>
+
+<body>
+    <div align="center">
+        <h1>&#78171; CORVUS</h1>
+        <hr>
+        <form name="raven">
+            <p>Twitter ID</p>
+            <p>&#40;&#64; is unnecessary.&#41;</p>
+            <input type="text" name="twid" size="50" value="">
+            <p>Search tweet</p>
+            <textarea name="tweet" cols="50" rows="3"></textarea>
+            <br><br>
+            <div onclick="obj=document.getElementById('menu').style; obj.display=(obj.display=='none')?'block':'none';">
+                <a style="cursor:pointer;">&#9660; Filter</a>
+            </div>
+            <div id="menu" style="display:none;clear:both;">
+                <input type="checkbox" name="img"> Images only
+            </div>
+        </form>
+        <h2><a href="javascript:search()">Search</a></h2>
+        <hr>
+        <p><a href="https://github.com/qu2/CORVUS">Source code</a></p>
+        <p>Developer: <a href="https://mobile.twitter.com/3dzn/">@3dzn</a></p>
+        <p>&copy; 2016 CORVUS
+    </div>
+
+    <noscript>
+  <div align="center">
+    <h1>Raven</h1>
+    <hr>
+    <h2>Error 9999</h2>
+    <p>Please enable JavaScript.</p>
+  </div>
+</noscript>
+
+    <script>
+        var url = 'https://mobile.twitter.com/search?q=from%3A';
+        var from = document.raven.elements['twid'];
+        var txt = document.raven.elements['tweet'];
+        var fImg = document.raven.elements['img'];
+
+        function search() {
+            if (from.value == '' && txt.value == '') {
+                alert('Error 1000\nTwitter ID form and Search tweet form is empty.');
+            } else if (from.value == '') {
+                alert('Error 1001\nTwitter ID form is empty.');
+            } else if (txt.value == '') {
+                alert('Error 1002\nSearch tweet form is empty.');
+            } else {
+                if (fImg.checked == true) {
+                    window.open(url + from.value + '+' + txt.value + '+filter%3Aimages', '_blank');
+                } else {
+                    window.open(url + from.value + '+' + txt.value, '_blank');
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
